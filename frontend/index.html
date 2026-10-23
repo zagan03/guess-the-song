@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Song Challenge 🎵</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="game-card">
+    <h1>🎵 Ghicește Piesa!</h1>
+    <p class="subtitle">Recunoaște melodia din cât mai puține secunde</p>
+
+    <!-- Meniul de Start -->
+    <div id="start-menu">
+        <h2>Alege categoria:</h2>
+        <select id="category-select" class="custom-select">
+            <option value="Manele">Manele</option>
+            <option value="Bad Bunny">Bad Bunny</option>
+            <option value="Dua Lipa">Dua Lipa</option>
+            <option value="Ed Sheeran">Ed Sheeran</option>
+            <option value="Ariana Grande">Ariana Grande</option>
+            <option value="Taylor Swift">Taylor Swift</option>
+
+        </select>
+        <button class="btn-start" onclick="startGame()">Start Joc 🚀</button>
+    </div>
+
+    <!-- Containerul jocului (ascuns inițial) -->
+    <div id="game-container" style="display: none;">
+        <div class="stats-bar">
+            <div class="score-badge">Scor Total: <span id="score">0</span> 🔥</div>
+            <div class="points-badge">Miza rundei: <span id="potential-points">100</span> pct</div>
+        </div>
+
+        <div class="score-board">
+            <div class="score-item guessed">✅ Ghicite: <span id="score-guessed">0</span></div>
+            <div class="score-item missed">❌ Ratate: <span id="score-missed">0</span></div>
+        </div>
+
+        <!-- Playerul audio este ascuns, îl controlăm din butoane ca să nu poată derula -->
+        <audio id="audio-player"></audio>
+
+        <!-- Zona de redare și bară de progres -->
+        <div class="custom-player">
+            <button id="play-btn" class="btn-play" onclick="togglePlay()">
+                ▶️ Ascultă (<span id="current-limit-text">3</span>s)
+            </button>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Butoanele de deblocare timp -->
+        <div class="time-tiers">
+            <button id="tier-1" class="tier-btn active" disabled>1s (250p)</button>
+            <button id="tier-3" class="tier-btn" onclick="unlockTier(3, 100)">🔓 +3s (100p)</button>
+            <button id="tier-5" class="tier-btn" onclick="unlockTier(5, 50)">🔓 +5s (50p)</button>
+            <button id="tier-10" class="tier-btn" onclick="unlockTier(10, 25)">🔓 +10s (25p)</button>
+        </div>
+
+        <!-- Dropdown căutare -->
+        <div class="dropdown-container">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Scrie numele piesei sau artistul..."
+                autocomplete="off"
+            >
+            <div id="dropdown-list" class="dropdown-list"></div>
+        </div>
+
+        <!-- Butoane acțiune -->
+        <div class="btn-group">
+            <button id="guess-btn" class="btn-guess" onclick="submitGuess()">Ghicește!</button>
+            <button id="next-btn" class="btn-next" onclick="loadNewSong()">Altă piesă ⏭️</button>
+            <button id="give-up-btn" class="btn-give" onclick="giveUp()">Renunță</button>
+        </div>
+    </div> <!-- Aici se închide game-container -->
+
+    <div id="feedback-box" class="feedback"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

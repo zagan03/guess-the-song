@@ -1,0 +1,14 @@
+# Audio
+audio/
+*.mp3
+
+# Python
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
