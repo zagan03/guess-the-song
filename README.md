@@ -1,36 +1,40 @@
 # 🎵 Guess the Song 
 
-Un joc interactiv web bazat pe preview-uri audio, unde jucătorii trebuie să recunoască melodia dintr-un fragment scurt. De la hituri internaționale pop până la manele vechi.
+An interactive web-based audio preview game where players have to guess the song from a short snippet. Featuring everything from international pop hits to classic manele.
 
-## 🚀 Funcționalități
-* **Selecție Categorii:** Alege între Manele, Bad Bunny, Dua Lipa, Ed Sheeran, Ariana Grande și Taylor Swift.
-* **Redare Audio Rapidă:** Preview-uri MP3 servite direct din folderele statice locale.
-* **Validare Răspunsuri:** Sistem de verificare în timp real a ghicirilor, cu mesaje personalizate.* **Bază de date scalabilă:** Sistem inteligent de scraping (Deezer API) pentru a adăuga melodii noi fără a crea duplicate.
+## 🚀 Features
+- **Category Selection:** Choose between Manele, Bad Bunny, Dua Lipa, Ed Sheeran, Ariana Grande, and Taylor Swift.
+- **Fast Audio Playback:** MP3 previews served directly from local static folders.
+- **Answer Validation:** Real-time guess verification system with custom messages.
+- **Scalable Database:** Smart scraping system (using the Deezer API) to add new songs without creating duplicates.
 
 ## 🛠️ Tech Stack
-* **Backend:** Python, FastAPI, Uvicorn
-* **Frontend:** HTML, CSS, JavaScript (Vanilla / Fetch API)
-* **Procesare Date:** Scripturi custom Python (`requests`, `json`) pentru descărcarea melodiilor și popularea fișierelor JSON.
+- **Backend:** Python, FastAPI, Uvicorn
+- **Frontend:** HTML, CSS, JavaScript (Vanilla / Fetch API)
+- **Data Processing:** Custom Python scripts (`requests`, `json`) for downloading songs and populating the JSON files.
 
-## 📦 Instalare și Rulare
+## 📦 Installation and Setup
 
-1. **Clonează proiectul și instalează dependențele pentru backend:**
+1. **Clone the repository and install the backend dependencies:**
    ```bash
    pip install fastapi uvicorn pydantic requests
    ```
 
-2. **Pornește serverul FastAPI:**
-   Asigură-te că te afli în folderul unde ai fișierul de backend (ex. `main.py` sau `app.py`) și rulează:
+2. **Start the FastAPI server:**
+   Ensure you are in the folder containing the backend file (e.g., `main.py` or `app.py`) and run:
    ```bash
    uvicorn main:app --reload
    ```
-   *Serverul va porni pe `http://127.0.0.1:8000` și va expune automat folderul `/audio`.*
+   *The server will start on `http://127.0.0.1:8000` and automatically expose the `/audio` folder.*
 
-3. **Deschide jocul:**
-   Deschide fișierul `index.html` în browserul preferat (sau folosește extensia Live Server din VS Code). 
+3. **Run all the scripts, starting with `fetch_songs.py`.**
 
-## 🎵 Adăugarea de piese noi
-Proiectul include un script Python care folosește API-ul Deezer pentru a extinde baza de date de melodii.
-1. Adaugă ID-urile noilor albume sau playlist-uri în lista `PLAYLIST_IDS` din script.
-2. Rulează scriptul. Acesta va descărca automat MP3-urile lipsă în folderul `/audio` și va face *append* noilor melodii în fișierul corespunzător (ex. `songs.json`), evitând duplicatele.
-3. Dă un restart la serverul FastAPI pentru a încărca noile fișiere JSON în memorie.
+4. **Open the game:**
+   Open the `index.html` file in your preferred browser (or use the Live Server extension in VS Code). 
+
+## 🎵 Adding New Songs
+The project includes a Python script that uses the Deezer API to expand the song database.
+
+1. Add the IDs of the new albums or playlists to the `PLAYLIST_IDS` list in the script.
+2. Run the script. It will automatically download any missing MP3s to the `/audio` folder and append the new songs to the corresponding file (e.g., `songs.json`), avoiding duplicates.
+3. Restart the FastAPI server to load the new JSON files into memory.
