@@ -71,10 +71,10 @@ def check_guess(data: GuessRequest):
     if data.guessed_song_id != data.current_song_id:
         return {
             "correct" : False,
-            "message" : "Ai gresit! Mai incearca!"
+            "message" : "Maiiiii! Esti praaaaf!!!"
         }
     else:
         return {
             "correct" : True,
-            "message" : "Felicitari! Ai ghicit!"
+            "message" : "Bravo, viata mea! Esti top!!!!!"
         }
